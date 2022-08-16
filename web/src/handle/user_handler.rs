@@ -13,6 +13,7 @@ use crate::handle::log_error;
 
 pub async fn query_user_by_id(Extension(state): Extension<AppState>,
                               Path(id): Path<i64>) -> Result<RestJson<User>> {
+
     let user = sqlx::query_as::<MySql,User>(
         "SELECT id, name, age, email, create_time FROM user WHERE id = ?")
         .bind(id)

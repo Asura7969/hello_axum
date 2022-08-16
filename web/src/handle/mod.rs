@@ -1,6 +1,7 @@
 use crate::{AppError, AppState, RestJson};
 
 pub mod user_handler;
+pub mod redis_handler;
 
 
 type HandlerResult<T> = crate::Result<RestJson<T>>;

@@ -58,6 +58,12 @@ impl From<sqlx::Error> for AppError {
     }
 }
 
+impl From<serde_json::Error> for AppError {
+    fn from(err: serde_json::Error) -> Self {
+        Self::from_err(err, AppErrorType::ServiceError)
+    }
+}
+
 impl IntoResponse for AppError {
 
     fn into_response(self) -> Response {
@@ -77,6 +83,7 @@ pub async fn usage<'a>() -> RestJson<Vec<&'a str>> {
         GET /user_by_id/:id
         GET /user_by_name/:name
     "#;
+    format!(data);
     let data: Vec<&str> = data
         .split('\n')
         .into_iter()
