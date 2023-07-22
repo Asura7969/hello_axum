@@ -83,7 +83,7 @@ pub async fn usage<'a>() -> RestJson<Vec<&'a str>> {
         GET /user_by_id/:id
         GET /user_by_name/:name
     "#;
-    format!(data);
+    format!("{}", data);
     let data: Vec<&str> = data
         .split('\n')
         .into_iter()
